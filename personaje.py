@@ -1,9 +1,12 @@
 class personaje:
     
-    #atributos de clase 
-    especie="humano"
-    nombre="marcus fenix"
-    altura= 1.90
+    #constructor 
+    
+    def __init__(self, esp,nom,alt):
+        
+        self.especie= esp
+        self.nombre= nom
+        self.altura= alt
     
     #metodos de personaje 
     
