@@ -17,6 +17,7 @@ def agregarbotones():
     botonnuevo=Button(seccion3,text="boton nuevo")
     botonnuevo.pack()
 
+
 #1.instanciamon un objeto ventana 
 
 ventana = Tk()
