@@ -1,12 +1,12 @@
-from tkinter import*
-from tkinter import messagebox
-import random
-import string
+from logica import *
 
-def generar ():
-    b = [random.choice(a) for i in range(8)]
-    print(b)
-    
+
+axc=logica()
+
+
+def funciones():
+    axc.generar(longitud.get(),mayu.get(),espe.get())
+
 
 
 
@@ -17,23 +17,41 @@ ventana.geometry("600x400")
 
 
 
-
 seccion1 = Frame(ventana, bg="white")
 seccion1.pack(expand=True,fill='both')
 
-texto=Label(seccion1,text="ingresa los caracteres:")
+texto=Label(seccion1,text="generador de contraseñas")
 texto.pack()
 
-password = ''
+texto=Label(seccion1)
+texto.pack()
 
-contraseña1=StringVar()
-contraseña= Entry(seccion1,textvariable=contraseña1)
-contraseña.pack()
+texto=Label(seccion1,text="ingrese la longitud")
+texto.pack()
+longitud=StringVar()
+lon=Entry(seccion1,textvariable=longitud)
+lon.pack()
 
-c=str(contraseña1.get)
-a= [str(c)]
-crear= Button(seccion1,text="crear", fg="black",command=generar)
-crear.pack()
+
+texto=Label(seccion1,text="¿usar caracteres especiales?")
+texto.pack()
+espe=StringVar()
+esp=Entry(seccion1,textvariable=espe)
+esp.pack()
+
+texto=Label(seccion1,text="¿usar mayusculas?")
+texto.pack()
+mayu=StringVar()
+may=Entry(seccion1,textvariable=mayu)
+may.pack()
+
+comp=Button(seccion1,text="crear", fg="black",command=funciones)
+comp.pack()
+
+comp=Button(seccion1,text="comprobar", fg="black",command=funciones)
+comp.pack()
+
+
 
 
 ventana.mainloop()
