@@ -1,46 +1,36 @@
-from tkinter import*
-from tkinter import messagebox
-from tkinter import ttk
+from logica14 import*
 
 
+# importar metodos 
 
+axc=logica14()
 
-
-usuarios=[]
-
-def guardar ():
+def usuario():
+    axc.guardar(cuenta.get(),titular.get(),saldo.get(),edad.get())
+      
+def consulta1 ():
+    axc.consulta()
     
-    a=str(cuenta.get())
-    b=str(titular.get())
-    c=str(saldo.get())
-    d=str(edad.get())
+ 
+def depositar1 ():
+    axc.depositar(dep.get())
+        
+def retirar1():
+    axc.retirar(ret.get())  
+
+def depositarcuenta1():
+    axc.depositarcuenta(depos.get(),depc.get())
     
-    usuarios.append(a)
-    usuarios.append(b)
-    usuarios.append(d)
     
-    c=b
+# interfaz del registro usuario 1:
 
 
-    print(usuarios)
-    
+user = Tk()
+user.title("practica 11:3 Frames")
+user.geometry("600x400")
 
-ventana = Tk()
-ventana.title("practica 11:3 Frames")
-ventana.geometry("600x400")
-
-registro= ttk.Notebook(ventana)
-registro.pack()
-
-
-seccion1 = Frame(registro,width=400,height=280)
+seccion1 = Frame(user,width=400,height=280)
 seccion1.pack(expand=True,fill='both')
-
-seccion2 = Frame(registro,width=400,height=280)
-seccion2.pack(expand=True,fill='both')
-
-registro.add(seccion1,text="registro de usuario")
-registro.add(seccion2,text="acciones")
 
 texto=Label(seccion1,text="registrar usuario")
 texto.pack()
@@ -74,51 +64,111 @@ edad1=Entry(seccion1,textvariable=edad)
 edad1.pack()
 
 
-boton=Button(seccion1,text="guardar",command=guardar)
+boton=Button(seccion1,text="guardar",command=usuario)
 boton.pack()
 
-#2////////
 
-
-def menu ():
     
-    saldo=[500]
-    
-    if str(acciones1.get()) == str("1"):
-        print(saldo)
-        
-    elif str(acciones1.get()) == str("2"):
-        saldo.append(100)
-        print(saldo)
-        a=sum(saldo)
-        
-        print(a)
-    elif str(acciones1.get()) == str("3"):
-        print(saldo)
-        saldo.remove(100)
-        print(saldo)
-         
-    elif str(acciones1.get()) == str("4"):
-        usuarios.append(saldo)
-    
-        
+# interfaz guardar usuario
 
-texto=Label(seccion2,text="¿que deseas realizar")
-texto.pack()
-texto=Label(seccion2,text="1.consultar saldo")
-texto.pack()
-texto=Label(seccion2,text="2.ingresar efectivo")
-texto.pack()
-texto=Label(seccion2,text="3.retirar efectivo")
-texto.pack()
-texto=Label(seccion2,text="4.depositar a otra cuenta")
+
+
+note= ttk.Notebook(user)
+note.pack()
+
+consultar = Frame(note,width=400,height=280)
+consultar.pack(expand=True,fill='both')
+
+depositos = Frame(note,width=400,height=280)
+depositos.pack(expand=True,fill='both')
+
+retiros = Frame(note,width=400,height=280)
+retiros.pack(expand=True,fill='both')
+
+depositocuenta = Frame(note,width=400,height=280)
+depositocuenta.pack(expand=True,fill='both')
+
+note.add(consultar,text="consultar saldo")
+note.add(depositos,text="depositar")
+note.add(retiros,text="retirar")
+note.add(depositocuenta,text="depositar a otra cuenta")
+
+
+#consultar saldo 
+
+texto=Label(consultar,text="consultar saldo")
 texto.pack()
 
-acciones1=StringVar()
-acciones=Entry(seccion2,textvariable=acciones1)
-acciones.pack()
+texto=Label(consultar,text="")
+texto.pack()
 
-boton=Button(seccion2,text="seleccionar",command=menu)
+boton=Button(consultar,text="consultar",command=consulta1)
 boton.pack()
 
-ventana.mainloop()
+texto=Label(consultar,text="")
+texto.pack()
+
+# depositar
+
+texto=Label(depositos,text="depositar efectivo")
+texto.pack()
+texto=Label(depositos,text="")
+texto.pack()
+texto=Label(depositos,text="cuanto desea depositar")
+texto.pack()
+dep=StringVar()
+deposito=Entry(depositos,textvariable=dep)
+deposito.pack()
+
+boton=Button(depositos,text="depositar",command=depositar1)
+boton.pack()
+texto=Label(depositos,text="")
+texto.pack()
+
+# retirar
+
+texto=Label(retiros,text="retirar efectivo")
+texto.pack()
+texto=Label(retiros,text="")
+texto.pack()
+texto=Label(retiros,text="cuanto desea retirar")
+texto.pack()
+ret=StringVar()
+retiro=Entry(retiros,textvariable=ret)
+retiro.pack()
+boton=Button(retiros,text="retirar",command=retirar1)
+boton.pack()
+texto=Label(retiros,text="")
+texto.pack()
+
+#depositar a otra cuenta
+
+texto=Label(depositocuenta,text="depositar a otra cuenta")
+texto.pack()
+texto=Label(depositocuenta,text="")
+texto.pack()
+texto=Label(depositocuenta,text="cuenta")
+texto.pack()
+
+depos=StringVar()
+depo=Entry(depositocuenta,textvariable=depos)
+depo.pack()
+
+texto=Label(depositocuenta,text="titular")
+texto.pack()
+titula=StringVar()
+tit=Entry(depositocuenta)
+tit.pack()
+texto=Label(depositocuenta,text="cantidad a depositar")
+texto.pack()
+depc=StringVar()
+depcuenta=Entry(depositocuenta,textvariable=depc)
+depcuenta.pack()
+
+boton=Button(depositocuenta,text="depositar",command=depositarcuenta1)
+boton.pack()
+texto=Label(depositocuenta,text="")
+texto.pack()
+
+user.mainloop()
+
