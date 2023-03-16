@@ -4,6 +4,7 @@ from tkinter import ttk
 import random
 
 nombrel=[]
+carrera=[]
 
 aleatorio="1234567890"
 año=23
@@ -16,14 +17,32 @@ def generar():
     d=str(nacimiento.get())
     f=str(carrera.get())
 
-    a[0:0]
-
-    h=[random.choices (b) for i in range (2)]
-    i=[random.choices (c) for i in range (2)]
-    j=[random.choices (aleatorio) for i in range (2)]
-    a[0]
     
-    print(a,h,i,d,año,j)
+    j=a[0]
+    k=f[0]
+    l=f[1]
+    m=f[2]
+    o=d[2]
+    p=d[3]
+
+    h=b[0]
+    i=b[1]
+    q=c[0]
+    r=c[1]
+    g=str([random.choices (aleatorio) for i in range (2)])
+    
+    u=g[3]
+    v=g[10]
+   
+    w=(j,q,r,h,i,o,p,año,k,l,m,u,v)
+    
+    messagebox.showinfo("matricula" ,f'la matricula es: "{w}"')
+
+
+
+    
+  
+
  
 
     
@@ -74,7 +93,7 @@ texto=Label(seccion1,text="carrera")
 texto.pack()
 
 carrera=StringVar()
-carrera1=Entry(seccion1,textvariable="carreara")
+carrera1=Entry(seccion1,textvariable=carrera)
 carrera1.pack()
 
 
