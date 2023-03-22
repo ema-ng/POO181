@@ -36,7 +36,7 @@ def generar():
    
     w=(j,q,r,h,i,o,p,año,k,l,m,u,v)
     
-    messagebox.showinfo("matricula" ,f'la matricula es: "{w}"')
+    messagebox.showinfo("matricula" ,f'la matricula es: "{j}{q}{r}{h}{i}{o}{p}{año}{k}{l}{m}{u}{v}"')
 
 
 
