@@ -2,6 +2,18 @@
 from tkinter import * 
 from tkinter import messagebox
 from tkinter import ttk
+from crontoladorBD import* #1. presentar archivo contolador
+
+#2.crear objeto de la clase controlador
+
+controlador=controladorBD()
+
+#3.funcion para disparar el boton
+
+def ejecutainsert():
+    
+    controlador.guardarusuario(nombre.get(),correo.get(),contraseña.get())
+
 
 ventana = Tk()
 ventana.title("base de datos Frames")
@@ -50,7 +62,7 @@ contraseña=StringVar()
 contraseña1=Entry(agregar,textvariable=contraseña)
 contraseña1.pack()
 
-boton=Button(agregar,text="agregar")
+boton=Button(agregar,text="agregar",command=ejecutainsert)
 boton.pack()
 
 ventana.mainloop()
