@@ -1,5 +1,6 @@
 
 from tkinter import * 
+import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from crontoladorBD import* #1. presentar archivo contolador
@@ -17,10 +18,14 @@ def ejecutainsert():
 def ejecutarselect():
     usuario=controlador.consultar(varbus.get())
     for usu in usuario:
-        cadena= str(usu[0])+""+ usu[1]+""+ usu[2]+""+str(usu[3]) 
+        cadena= str(usu[0])+" "+ usu[1]+" "+ usu[2]+" "+str(usu[3]) 
     
     if(usuario):
+        
         print(cadena)
+        texto.insert(tk.INSERT,cadena)
+        
+        
         
     else:
         messagebox.showwarning("no encontrado","ese usuario no existe")
@@ -93,7 +98,9 @@ botonb.pack()
 
 titulo = Label(buscar,text="encontrado",fg='Blue',font=("modern",18))
 titulo.pack()
-texto=Text(buscar,height=5,width=52).pack()
+texto=Text(buscar,height=5,width=52)
+
+texto.pack()
 
 
 
