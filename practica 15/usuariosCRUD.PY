@@ -14,7 +14,17 @@ def ejecutainsert():
     
     controlador.guardarusuario(nombre.get(),correo.get(),contraseña.get())
 
-
+def ejecutarselect():
+    usuario=controlador.consultar(varbus.get())
+    for usu in usuario:
+        cadena= str(usu[0])+""+ usu[1]+""+ usu[2]+""+str(usu[3]) 
+    
+    if(usuario):
+        print(cadena)
+        
+    else:
+        messagebox.showwarning("no encontrado","ese usuario no existe")
+    
 ventana = Tk()
 ventana.title("base de datos Frames")
 ventana.geometry("600x400")
@@ -64,5 +74,27 @@ contraseña1.pack()
 
 boton=Button(agregar,text="agregar",command=ejecutainsert)
 boton.pack()
+
+
+#pestaña 2 buscar usuario 
+
+titulo = Label(buscar,text="Registro de usuario",fg='Blue',font=("modern",18))
+titulo.pack()
+
+texto=Label(buscar,text="identificar usuario")
+texto.pack()
+
+varbus=StringVar()
+subbus=Entry(buscar,textvariable=varbus)
+subbus.pack()
+
+botonb=Button(buscar,text="buscar",command=ejecutarselect)
+botonb.pack()
+
+titulo = Label(buscar,text="encontrado",fg='Blue',font=("modern",18))
+titulo.pack()
+texto=Text(buscar,height=5,width=52).pack()
+
+
 
 ventana.mainloop()
