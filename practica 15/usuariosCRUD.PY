@@ -102,6 +102,30 @@ texto=Text(buscar,height=5,width=52)
 
 texto.pack()
 
+#consultar 
+
+def prueba():
+    controlador.prueba1()
+
+columna=('id','nombre','correo','contraseña')
+tree=ttk.Treeview(consultar,columns=columna,show='headings')
+tree.heading('id',text='id')
+tree.heading('nombre',text='nombre')
+tree.heading('correo',text='correo')
+tree.heading('contraseña',text='contraseña')
+tree.bind('<<TreeviewSelect>>')
+tree.grid(row=0, column=0, sticky='nsew')
 
 
+
+
+
+scrollbar = ttk.Scrollbar(consultar, orient=tk.VERTICAL, command=tree.yview)
+tree.configure(yscroll=scrollbar.set)
+scrollbar.grid(row=0, column=1, sticky='ns')
+
+boton=Button(actualizar,text="prueba",command=prueba).pack()
+
+
+    
 ventana.mainloop()

@@ -80,7 +80,15 @@ class controladorBD:
             
             except sqlite3.OperationalError:
                 print ("error de consulta")
+                
+    def prueba1(self):
+        conx=self.conexionBD()
+        cur = conx.cursor()
+        for row in cur.execute('SELECT * FROM TBRegistrados;'):
+            print(row)
+
         
+
         
         
         
