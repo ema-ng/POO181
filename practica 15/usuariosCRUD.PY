@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from crontoladorBD import* #1. presentar archivo contolador
+import threading
 
 #2.crear objeto de la clase controlador
 
@@ -35,6 +36,28 @@ def act ():
     
 def eliminarusu():
     controlador.eliminarusuario(elimina.get())
+    
+def tabla():
+    return controlador.actualizar()
+
+"""
+def act_tabla():
+    for uno in tree.get_children():
+        tree.delete(uno)
+    registros=tabla()
+    for b,row in enumerate(registros):
+        tree.insert('','end',text=str(b+1),values=(row))
+    if registros==[]:
+        messagebox.showwarning("error","no hay datos")
+        
+def nuevo():
+    act=threading.Thread(target=act_tabla)
+    act.start()
+    
+"""
+
+    
+
     
 ventana = Tk()
 ventana.title("base de datos Frames")
@@ -113,24 +136,22 @@ texto1.pack()
 
 #consultar 
 
-def prueba():
-  
-  controlador.prueba1(tree)
-    
-   
+col=('id','nombre','correo','contra')
+tree=ttk.Treeview(consultar,col=col,show='headings',height=20)
+tree.heading('id',text='id',anchor=CENTER)
+tree.heading('nombre',text='nombre',anchor=CENTER)
+tree.heading('correo',text='correo',anchor=CENTER)
+tree.heading('contra',text='contra',anchor=CENTER)
+tree.pack(padx=10, pady=10)
+registros=tabla()
 
-columna=('id','nombre','correo','contraseña')
-tree=ttk.Treeview(consultar,columns=columna,show='headings')
-tree.heading('id',text='id')
-tree.heading('nombre',text='nombre')
-tree.heading('correo',text='correo')
-tree.heading('contraseña',text='contraseña')
-tree.bind('<<TreeviewSelect>>',prueba)
-tree.grid(row=0, column=0, sticky='nsew')
+for b,row in enumerate(registros):
+    tree.insert('','end',text=str(b+1),values=(row))
+    if registros==[]:
+        messagebox.showwarning("error","no hay datos") 
 
-scrollbar = ttk.Scrollbar(consultar, orient=tk.VERTICAL, command=tree.yview)
-tree.configure(yscroll=scrollbar.set)
-scrollbar.grid(row=0, column=1, sticky='ns')
+#boton=Button(consultar,text="actualizar",command=nuevo).pack()
+
                                       
 
 #eliminar 

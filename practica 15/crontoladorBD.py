@@ -2,6 +2,7 @@ from  tkinter import messagebox
 import sqlite3
 import bcrypt
 from tkinter import * 
+from tkinter import ttk
 
 
 
@@ -83,18 +84,26 @@ class controladorBD:
             
             except sqlite3.OperationalError:
                 print ("error de consulta")
-                
-    def prueba1(self,tree):
-        conx=self.conexionBD()
-        cur = conx.cursor()
-        cur.execute('SELECT * FROM TBRegistrados;')
-        records = cur.fetchall()
+            
     
-        for record in records:
+    def actualizar(self):
+        
+            conx = self.conexionBD()
+            cursor = conx.cursor()
+            sql="select id,nombre,correo,contra from TBRegistrados"
+            cursor.execute(sql)
+            resultado=cursor.fetchall()
+            conx.close
+            registros=[]
+            for row in resultado:
+                registros.append(list(row))
+            return registros
+        
+     
+        
+
             
-            tree.insert(values=(record))
-            print(record)
-            
+    
     def eliminarusuario (self,id):
         
         conx=self.conexionBD()
