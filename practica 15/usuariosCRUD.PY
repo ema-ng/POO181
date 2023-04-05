@@ -36,11 +36,12 @@ def act ():
     
 def eliminarusu():
     controlador.eliminarusuario(elimina.get())
-    
+  
+"""  
 def tabla():
     return controlador.actualizar()
 
-"""
+
 def act_tabla():
     for uno in tree.get_children():
         tree.delete(uno)
@@ -136,6 +137,7 @@ texto1.pack()
 
 #consultar 
 
+"""
 col=('id','nombre','correo','contra')
 tree=ttk.Treeview(consultar,col=col,show='headings',height=20)
 tree.heading('id',text='id',anchor=CENTER)
@@ -149,6 +151,7 @@ for b,row in enumerate(registros):
     tree.insert('','end',text=str(b+1),values=(row))
     if registros==[]:
         messagebox.showwarning("error","no hay datos") 
+"""
 
 #boton=Button(consultar,text="actualizar",command=nuevo).pack()
 
