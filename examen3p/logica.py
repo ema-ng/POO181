@@ -48,26 +48,41 @@ class logicae:
            
     def acuaizar (self,id,matn,cann):
         if(id == ""):
-            messagebox.showwarning("Cuidado","El ID no se encuentra en la base de datos")
+            messagebox.showwarning("Cuidado","El campo id esta vacio")
             
         if(matn== ""):
-            messagebox.showwarning("Cuidado","El ID no se encuentra en la base de datos")
+            messagebox.showwarning("Cuidado","El campo material esta vacio")
             
         if(cann == ""):
-            messagebox.showwarning("Cuidado","El ID no se encuentra en la base de datos")
+            messagebox.showwarning("Cuidado","El campo cantidad esta vacio")
        
         else:
             try:
         
-                nuevomat=matn
-                nuevacan=cann
+                nom=matn
+                can=cann
             
                 conx=self.conexionBD()
                 cursor=conx.cursor()
-                cursor.execute("UPDATE MatConstruccion SET Material=?, Cantdad=? WHERE id=?", (nuevomat,nuevacan,id))
+                cursor.execute("UPDATE MatConstruccion SET Material=?, Cantidad=? WHERE IDMat=?", (nom,can,id))
                 messagebox.showinfo("Realizado","Se a realizado la actualizacion de datos")
                 conx.commit()
                 conx.close()
             except sqlite3.OperationalError:
                 messagebox.showerror("Error","no se pudieron realizar los cambios")
+                
+                
+    
+    def act(self):
+
+            conx=self.conexionBD()
+            cursor=conx.cursor()
+            selectQry="select IDMat,Material,Cantidad from MatConstruccion"
+            cursor.execute(selectQry)
+            resultado=cursor.fetchall()
+            conx.close()
+            datos=[]
+            for row in resultado:
+                datos.append(list(row))
+            return datos
          
