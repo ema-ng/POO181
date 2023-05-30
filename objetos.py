@@ -1,4 +1,3 @@
-
 #1. importar la clase 
 
 from personaje import *
